@@ -1,0 +1,148 @@
+* {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+body {
+    height: 100%;
+}
+
+img {
+    width: auto;
+    height: 50px;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+}
+
+header>div {
+    display: flex;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+textarea {
+    border-radius: 20px;
+    border: 1px solid #fff;
+    padding: 25px;
+    outline: none;
+    resize: none;
+    border: 2px dashed #252422;
+    color: #252422;
+}
+
+button {
+    background-color: #252422;
+    color: #FBF5F3;
+    border: none;
+}
+
+h1 {
+    font-size: 24px;
+    letter-spacing: 0.1rem;
+}
+
+h2#tagLine {
+    text-align: center;
+    font-size: 48px;
+    width: 500px;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+}
+
+div#extraInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div#extraTools {
+    display: flex;
+    gap: 2rem;
+}
+
+div.card-group {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+}
+
+div.info-card {
+    width: 275px;
+    padding: 0 15px;
+    border-radius: 8px;
+    border: 1px solid #252422;
+}
+
+span#sentenceCount,
+span#wordCount,
+span#characterCount {
+    font-size: 60px;
+    font-weight: 400;
+}
+
+div#densityGraph {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+span.listItem {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Reset default progress styling */
+progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    width: 300px;
+    height: 8px;
+    border-radius: 4px;
+    background: #f0f0f0;
+    overflow: hidden;
+}
+
+/* WebKit browsers (Chrome, Safari) */
+progress::-webkit-progress-bar {
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+
+progress::-webkit-progress-value {
+    background: #4a90e2;
+    border-radius: 4px;
+}
+
+/* Firefox */
+progress::-moz-progress-bar {
+    background: #4a90e2;
+    border-radius: 4px;
+}
+
+.feather {
+    width: 32px;
+    height: 32px;
+    stroke: currentColor;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
