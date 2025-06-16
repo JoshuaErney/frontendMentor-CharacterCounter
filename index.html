@@ -4,9 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Real-time text analysis tool with character, word, and sentence counting">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <title>Character Counter - Real-time Text Analysis</title>
 
     <script src="https://unpkg.com/feather-icons"></script>
 
@@ -15,58 +19,104 @@
 </head>
 
 <body>
-    <header></header>
-    <main>
-        <span>
-            <h2 id="tagLine">Analyze your text in real-time.</h2>
-        </span>
-        <section>
-            <label for="textBox"></label>
-            <textarea name="textAnalysisBox" id="textBox" cols="100" rows="10" placeholder="Start typing here... (or just paste the text)"></textarea>
-            <div id="extraInfo">
-                <div id="extraTools">
-                    <span>
-                        <input type="checkbox" name="excludeSpacesCheckbox" id="excludeSpaces">
-                        <label for="excludeSpaces">Exclude Spaces</label>
-                    </span>
-                    <span>
-                        <input type="checkbox" name="charLimitCheckbox" id="charLimit">
-                        <label for="charLimit">Add Character Limit</label>
-                    </span>
-                </div>
-                <p>Approx. reading time: <span id="wpm"></span> minutes</p>
+
+    <body>
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+
+        <header class="header" role="banner">
+            <div class="header__brand">
+                <h1 class="header__title">Character Counter</h1>
             </div>
-        </section>
+        </header>
 
-        <section id="info">
-            <h2 class="section-heading">Quick Information</h2>
-            <div class="card-group">
-                <div class="info-card character">
-                    <span id="characterCount">00</span>
-                    <p>Total Characters</p>
-                </div>
-                <div class="info-card word">
-                    <span id="wordCount">00</span>
-                    <p>Word Count</p>
-                </div>
-                <div class="info-card sentence">
-                    <span id="sentenceCount">00</span>
-                    <p>Sentence Count</p>
-                </div>
-            </div>
-        </section>
+        <main class="main" id="main-content" role="main">
+            <section class="hero" aria-labelledby="hero-title">
+                <h2 id="hero-title" class="hero__title">Analyze your text in real-time.</h2>
+            </section>
 
-        <section>
-            <h2 class="section-heading">Character Density</h2>
-            <div id="densityGraph"></div>
-        </section>
-    </main>
-    <footer></footer>
+            <section class="form-section" aria-labelledby="input-section-title">
+                <h3 id="input-section-title" class="sr-only">Text Input</h3>
 
-    <script>
-        feather.replace();
-    </script>
-    <script src="/js/main.js"></script>
-</body>
+                <div class="form-group">
+                    <label for="text-input" class="form-label sr-only">
+                        Enter your text for analysis
+                    </label>
+                    <textarea id="text-input" class="text-area" placeholder="Start typing here... (or just paste the text)" aria-describedby="text-help" rows="10" cols="50"></textarea>
+                    <div id="text-help" class="sr-only">
+                        Text area for character and word analysis. Results will update automatically as you type.
+                    </div>
+                </div>
+
+                <div class="controls" role="group" aria-labelledby="controls-title">
+                    <h4 id="controls-title" class="sr-only">Analysis Options</h4>
+
+                    <div class="controls__options">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="exclude-spaces" class="checkbox" aria-describedby="exclude-spaces-help">
+                            <label for="exclude-spaces" class="checkbox-label">
+                                Exclude Spaces
+                            </label>
+                            <div id="exclude-spaces-help" class="sr-only">
+                                When checked, spaces will not be counted in the character count
+                            </div>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="char-limit" class="checkbox" aria-describedby="char-limit-help">
+                            <label for="char-limit" class="checkbox-label">
+                                Add Character Limit
+                            </label>
+                            <div id="char-limit-help" class="sr-only">
+                                When checked, adds a character limit indicator
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reading-time">
+                        Approx. reading time:
+                        <span id="reading-time-value" class="reading-time__value" aria-live="polite">0</span>
+                        minutes
+                    </div>
+                </div>
+            </section>
+
+            <section class="stats-section" aria-labelledby="stats-title">
+                <h3 id="stats-title" class="section-title">Quick Information</h3>
+
+                <div class="stats-grid" role="group" aria-labelledby="stats-title">
+                    <div class="stat-card" role="img" aria-labelledby="char-count-label">
+                        <span id="character-count" class="stat-card__value" aria-live="polite">0</span>
+                        <div id="char-count-label" class="stat-card__label">Total Characters</div>
+                    </div>
+
+                    <div class="stat-card" role="img" aria-labelledby="word-count-label">
+                        <span id="word-count" class="stat-card__value" aria-live="polite">0</span>
+                        <div id="word-count-label" class="stat-card__label">Word Count</div>
+                    </div>
+
+                    <div class="stat-card" role="img" aria-labelledby="sentence-count-label">
+                        <span id="sentence-count" class="stat-card__value" aria-live="polite">0</span>
+                        <div id="sentence-count-label" class="stat-card__label">Sentence Count</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="density-section" aria-labelledby="density-title">
+                <h3 id="density-title" class="section-title">Character Density</h3>
+
+                <div id="density-list" class="density-list" role="group" aria-labelledby="density-title"></div>
+            </section>
+        </main>
+
+        <footer class="footer" role="contentinfo">
+            <p>&copy; 2025 Character Counter. Built with accessibility in mind.</p>
+        </footer>
+
+
+        <script>
+            feather.replace();
+        </script>
+        <script src="/js/main.js"></script>
+    </body>
 
 </html>

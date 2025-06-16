@@ -54,7 +54,6 @@ charLimitCheckbox.addEventListener('click', () => {
             // really need to save the textarea value in a seperate variable. String.slice() might be useful.
             if (textarea.value.length > select.value) {
                 textarea.value = textarea.value.substring(0, select.value);
-                console.log(textarea.value.textContent);
             }
         });
 
