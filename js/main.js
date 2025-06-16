@@ -1,38 +1,41 @@
 // Information Stats boxes
-const character = document.querySelector('span#characterCount')
-const word = document.querySelector('span#wordCount');
-const sentence = document.querySelector('span#sentenceCount');
-const textarea = document.querySelector('textarea')
-const excludeCheckbox = document.querySelector('input#excludeSpaces');
-const charLimitCheckbox = document.querySelector('input#charLimit');
-const wordsPerMinute = document.querySelector('span#wpm');
+const character = document.querySelector('#characterCount')
+const word = document.querySelector('#wordCount');
+const sentence = document.querySelector('#sentenceCount');
+
+const excludeSpaces = document.querySelector('#exclude-spaces');
+const charLimit = document.querySelector('#char-limit');
+const controlsContainer = document.querySelector('.controls_options');
+const readingTime = document.querySelector('#reading-time-value');
+
 const densityGraphContainer = document.querySelector('section#densityGraph');
-const extraTools = document.querySelector('div#extraTools');
+
+const textarea = document.querySelector('#text-input');
 
 const regexpWord = /\b\w+\b/g;
 const regexpSentence = /[^.!?]*[.!?]/g;
 
 textarea.addEventListener('input', () => {
     if (textarea.value === '') {
-        characterCount.textContent = '00'
-        word.textContent = '00'
-        sentence.textContent = '00'
+        character.textContent = '0'
+        word.textContent = '0'
+        sentence.textContent = '0'
     } else {
-        characterCount.textContent = textarea.value.length;
+        character.textContent = textarea.value.length;
 
-        excludeCheckbox.addEventListener('click', () => {
-            excludeCheckbox.checked === true ? characterCount.textContent = textarea.value.replaceAll(" ", "").length : characterCount.textContent = textarea.value.length;
+        excludeSpaces.addEventListener('click', () => {
+            excludeSpaces.checked === true ? character.textContent = textarea.value.replaceAll(" ", "").length : character.textContent = textarea.value.length;
         });
 
         word.textContent = textarea.value.match(regexpWord).length;
-        sentence.textContent = textarea.value.match(regexpSentence) === null ? '00' : textarea.value.match(regexpSentence).length;
+        sentence.textContent = textarea.value.match(regexpSentence) === null ? '0' : textarea.value.match(regexpSentence).length;
     };
 });
 
-charLimitCheckbox.addEventListener('click', () => {
-    if (charLimitCheckbox.checked === true) {
-        extraTools.insertAdjacentHTML('beforeend', `
-            <span id="characterLimitSpan">
+charLimit.addEventListener('click', () => {
+    if (charLimit.checked === true) {
+        controlsContainer.insertAdjacentHTML('beforeend', `
+            <div class="checkbox-group" id="characterLimitDiv">
                 <label for="characterLimit-select">Limit to:</label>
                 <select name="characterLimit" id="characterLimitSelect">
                     <option value="" selected disabled>Set the character count</option>
@@ -45,8 +48,7 @@ charLimitCheckbox.addEventListener('click', () => {
                     <option value="1000">1,000 Characters</option>
                     <option value="1500">1,500 Characters</option>
                 </select>
-            </span>
-            `
+            </div>`
         );
 
         const select = document.querySelector('#characterLimitSelect');
@@ -58,8 +60,8 @@ charLimitCheckbox.addEventListener('click', () => {
         });
 
     } else {
-        const characterLimitSpan = document.querySelector('#characterLimitSpan');
-        characterLimitSpan.remove();
+        const characterLimitDiv = document.querySelector('#characterLimitDiv');
+        characterLimitDiv.remove();
     }
 });
 

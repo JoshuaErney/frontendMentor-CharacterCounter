@@ -78,13 +78,13 @@
        background-color: var(--color-background);
    }
 
-   .header__brand {
+   .header_brand {
        display: flex;
        align-items: center;
        gap: var(--spacing-sm);
    }
 
-   .header__title {
+   .header_title {
        font-size: var(--font-size-large);
        font-weight: 500;
        letter-spacing: 0.025em;
@@ -99,7 +99,7 @@
        width: 100%;
    }
 
-   .hero__title {
+   .hero_title {
        text-align: center;
        font-size: clamp(1.5rem, 4vw, var(--font-size-xxlarge));
        font-weight: 300;
@@ -163,7 +163,7 @@
        margin: var(--spacing-lg) 0;
    }
 
-   .controls__options {
+   .controls_options {
        display: flex;
        gap: var(--spacing-md);
        flex-wrap: wrap;
@@ -192,7 +192,7 @@
        color: var(--color-secondary);
    }
 
-   .reading-time__value {
+   .reading-time_value {
        font-weight: 500;
        color: var(--color-text);
    }
@@ -231,7 +231,7 @@
        border-color: var(--color-border-focus);
    }
 
-   .stat-card__value {
+   .stat-card_value {
        font-size: clamp(1.5rem, 5vw, var(--font-size-xxlarge));
        font-weight: 300;
        display: block;
@@ -240,7 +240,7 @@
        line-height: 1;
    }
 
-   .stat-card__label {
+   .stat-card_label {
        font-size: var(--font-size-small);
        font-weight: 500;
        text-transform: uppercase;
@@ -274,7 +274,7 @@
        background-color: var(--color-progress-bg);
    }
 
-   .density-item__label {
+   .density-item_label {
        font-weight: 500;
        font-size: var(--font-size-small);
    }
@@ -306,13 +306,13 @@
        border-radius: var(--border-radius);
    }
 
-   .density-item__stats {
+   .density-item_stats {
        font-size: var(--font-size-small);
        text-align: right;
        color: var(--color-secondary);
    }
 
-   .density-item__percentage {
+   .density-item_percentage {
        font-weight: 300;
        margin-left: var(--spacing-xs);
    }
@@ -343,7 +343,7 @@
            gap: var(--spacing-md);
        }
 
-       .controls__options {
+       .controls_options {
            justify-content: center;
            width: 100%;
        }
@@ -354,7 +354,7 @@
            gap: var(--spacing-xs);
        }
 
-       .density-item__stats {
+       .density-item_stats {
            text-align: center;
        }
    }
