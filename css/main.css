@@ -268,7 +268,7 @@
        grid-template-columns: 1fr 2fr 1fr;
        gap: var(--spacing-sm);
        align-items: center;
-       padding: var(--spacing-sm);
+       padding: var(--spacing-xs);
        border: var(--border-width) solid var(--color-border);
        border-radius: var(--border-radius);
        background-color: var(--color-progress-bg);
