@@ -8,6 +8,7 @@ const charLimit = document.querySelector('#char-limit');
 const controlsContainer = document.querySelector('.controls_options');
 const readingTime = document.querySelector('#reading-time-value');
 const densityList = document.querySelector('#densityList');
+const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 const regexpWord = /\b\w+\b/g;
 const regexpSentence = /[^.!?]*[.!?]/g;
@@ -27,6 +28,21 @@ textarea.addEventListener('input', () => {
         word.textContent = textarea.value.match(regexpWord).length;
         sentence.textContent = textarea.value.match(regexpSentence) === null ? '0' : textarea.value.match(regexpSentence).length;
     };
+
+    const newString = textarea.value;
+    const foundChars = alphabet.filter(letter => newString.toLowerCase().includes(letter));
+    const escapeRegex = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const counts = {};
+
+    foundChars.forEach(char => {
+        const regex = new RegExp(escapeRegex(char), 'gi');
+        const matches = newString.match(regex);
+        counts[char] = matches ? matches.length : 0;
+    });
+
+    console.log(counts);
+
+    const stringLength = textarea.value.replaceAll(" ", "").length;
 });
 
 charLimit.addEventListener('click', () => {
@@ -61,10 +77,12 @@ charLimit.addEventListener('click', () => {
     }
 });
 
-// textarea.addEventListener('input', () => {
-//     const str = textarea.value.replaceAll(" ", "").toLowerCase();
-//     console.log(str.split(""));
-// })
+/* 
+
+const decimal = specificLetterCount / stringLength;
+const percentage = (decimal * 100).toFixed(2);
+
+*/
 
 /* 
 densityGraphContainer.insertAdjacentHTML('beforeend', `
