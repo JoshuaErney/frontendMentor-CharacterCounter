@@ -9,7 +9,6 @@ const controlsContainer = document.querySelector('.controls_options');
 const readingTime = document.querySelector('#reading-time-value');
 const densityList = document.querySelector('#density-list');
 const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
 const regexpWord = /\b\w+\b/g;
 const regexpSentence = /[^.!?]*[.!?]/g;
 
@@ -36,8 +35,6 @@ textarea.addEventListener('input', () => {
             readingTime.textContent = Math.round(word.textContent / averageReadingTime) + ' minutes';
         }
     };
-
-
 
     const newString = textarea.value;
     const foundChars = alphabet.filter(letter => newString.toLowerCase().includes(letter));
