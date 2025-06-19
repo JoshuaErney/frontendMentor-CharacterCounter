@@ -7,7 +7,7 @@ const excludeSpaces = document.querySelector('#exclude-spaces');
 const charLimit = document.querySelector('#char-limit');
 const controlsContainer = document.querySelector('.controls_options');
 const readingTime = document.querySelector('#reading-time-value');
-const densityList = document.querySelector('#densityList');
+const densityList = document.querySelector('#density-list');
 const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 const regexpWord = /\b\w+\b/g;
@@ -40,9 +40,20 @@ textarea.addEventListener('input', () => {
         counts[char] = matches ? matches.length : 0;
     });
 
-    console.log(counts);
-
     const stringLength = textarea.value.replaceAll(" ", "").length;
+
+    Object.entries(counts).forEach(([key, value]) => {
+
+        const decimal = value / stringLength;
+        const percentage = (decimal * 100).toFixed(2);
+
+        densityList.insertAdjacentHTML('beforeend', `
+            <div class="density-item">
+                <label for="character" class="density-item_label">${key}</label>
+                <progress id="character" max="100" value="${value}" class="progress-bar"></progress>
+                <p class="density-item_stats">${value} characters<span class="density-item_percentage"> (${percentage}%)</span></p>
+            </div>`);
+    });
 });
 
 charLimit.addEventListener('click', () => {
@@ -76,19 +87,3 @@ charLimit.addEventListener('click', () => {
         charLimit.remove();
     }
 });
-
-/* 
-
-const decimal = specificLetterCount / stringLength;
-const percentage = (decimal * 100).toFixed(2);
-
-*/
-
-/* 
-densityGraphContainer.insertAdjacentHTML('beforeend', `
-    <div class="density-item">
-        <label for="character" class="density-item_label">${character}</label>
-        <progress id="character" max="100" value="25" class="progress-bar"></progress>
-        <p class="density-item_stats">${numberOfCharacters} characters<span class="density-item_percentage"> (${percentage})</span></p>
-    </div>`);
-*/
