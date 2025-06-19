@@ -27,7 +27,17 @@ textarea.addEventListener('input', () => {
 
         word.textContent = textarea.value.match(regexpWord).length;
         sentence.textContent = textarea.value.match(regexpSentence) === null ? '0' : textarea.value.match(regexpSentence).length;
+
+        const averageReadingTime = 200;
+
+        if (word.textContent < averageReadingTime) {
+            readingTime.textContent = 'Less than a minute'
+        } else {
+            readingTime.textContent = Math.round(word.textContent / averageReadingTime) + ' minutes';
+        }
     };
+
+
 
     const newString = textarea.value;
     const foundChars = alphabet.filter(letter => newString.toLowerCase().includes(letter));
